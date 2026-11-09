@@ -1,0 +1,14 @@
+.logo {
+    width: var(--icon-size)
+    height: var(--icon-size)
+}
+
+.title {
+    will-change: opacity
+    transition: opacity .15s ease
+
+    &:empty {
+        opacity: 0
+        transition-duration: 0
+    }
+}

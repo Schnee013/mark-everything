@@ -1,0 +1,100 @@
+.modal {
+    contain: strict
+    position: fixed
+    z-index: 888
+    left: 0
+    top: 0
+    bottom: 0
+    right: 0
+    display: flex
+    align-items: center
+    justify-content: center
+
+    &.hidden {
+        display: none
+    }
+
+    &:before {
+        content: ''
+        position: absolute
+        left: 0
+        top: 0
+        bottom: 0
+        right: 0
+        background: rgba(0,0,0,.35)
+        backface-visibility: hidden
+        pointer-events: none
+        animation: modal-appear .3s ease-in-out
+    }
+
+    &.important {
+        z-index: 99999999
+    }
+
+    :global(.show-on-small-body) {
+        display: none
+    }
+}
+
+.wrap {
+    contain: content
+    z-index: 1
+    max-width: 90%  
+    max-height: 90%
+    border-radius: .3rem
+    box-shadow: 0 10px 30px rgba(0,0,0,.15)
+	border: 1px solid var(--shadow-color)
+    display: flex
+    flex-direction: column
+    overflow: hidden
+    overflow: clip
+    animation: wrap-appear-scale .3s ease-in-out
+    backface-visibility: hidden
+
+    &[data-stretch='true'] {
+        contain: strict
+        width: max(50%, 500px)
+        height: 100%
+    }
+}
+
+.body {
+    flex: 1
+    background: var(--sidebar-background-color)
+    display: flex
+    flex-direction: column
+    width: 100%
+    height: 100%
+    min-height: 0
+    overflow: hidden
+    overflow: clip
+}
+
+@keyframes modal-appear {
+    0% { opacity: 0 }
+    100% { opacity: 1 }
+}
+
+@keyframes wrap-appear-scale {
+    0% { transform: scale(0.9); opacity: 0 }
+    60% { transform: scale(1.05);  }
+    100% { transform: scale(1); opacity: 1 }
+}
+
+//extension specific
+html:global(.extension)[data-modal-stretch='true'][data-modal-showing='true'] [data-is-page] {
+	min-height: 600px
+}
+
+@media screen and (max-width: 500px) {
+    .wrap {
+        will-change: transform
+        max-width: 100%  
+        max-height: 100%
+        border: 0
+        border-radius: 0
+        width: 100%
+        height: 100%
+        animation-duration: 0s /* instead of animation: none - otherwise buggy in safari extension popover */
+    }
+}

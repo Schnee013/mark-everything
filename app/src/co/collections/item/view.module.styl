@@ -1,0 +1,68 @@
+.item {
+    padding-left: calc(var(--padding-medium) + var(--level, 0) * var(--icon-size)) !important
+
+    @media (pointer: fine) {
+        &:hover {
+            .count {
+                display: none;
+            }
+        }
+    }
+}
+
+.expand {
+    cursor: pointer
+    visibility: hidden;
+    opacity: .4;
+    color: inherit;
+    position:relative;
+    z-index:1;
+    box-sizing: initial;
+    width: var(--padding-medium)
+    margin-left: calc(var(--padding-medium) * -1)
+    margin-right: 0 !important
+    display: flex;
+    justify-content: center;
+
+    > :first-child {
+        vertical-align: -3px;
+        pointer-events: none;
+    }
+
+    @media (pointer: fine) {
+        &:hover {
+            opacity:1;
+        }
+    }
+
+    &:active {
+        opacity:.3;
+    }
+}
+
+.expanded .expand, .collapsed .expand {
+    visibility: visible
+}
+
+.collapsed .expand > :first-child  {
+    transform: rotate(-90deg)
+}
+
+.isDragging {
+    background: var(--background-color)
+    box-shadow: 0 1px 3px rgba(0,0,0,.1)
+}
+
+.isDropping {
+    transition: box-shadow .1s linear, background .1s linear
+    background-color: unquote('hsla(var(--accent-hsl), .1)') !important
+    box-shadow: inset 0px 0px 0px 2px var(--accent-color)
+}
+
+.checkbox {
+    margin-right: var(--padding-small)
+}
+
+.count {
+    min-width: var(--padding-medium)
+}

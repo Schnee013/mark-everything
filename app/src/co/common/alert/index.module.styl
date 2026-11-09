@@ -1,0 +1,33 @@
+.alert {
+    padding: var(--padding-small) calc(var(--padding-small) + var(--padding-mini))
+    border-radius: var(--border-radius)
+    box-shadow: inset 0 0 0 var(--shadow-height) var(--shadow-color)
+
+    a {
+        text-decoration: underline
+    }
+}
+
+.default {
+    background-color: var(--sidebar-background-color)
+}
+
+.success, .warning, .danger {
+    color: rgba(0,0,0,.7)
+
+    a {
+        color: black
+    }
+}
+
+.success {
+    background-color: var(--success-background-color)
+}
+
+.warning {
+    background-color: var(--warning-background-color)
+}
+
+.danger {
+    background-color: var(--danger-background-color)
+}

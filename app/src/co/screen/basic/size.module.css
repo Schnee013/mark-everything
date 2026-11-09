@@ -1,0 +1,50 @@
+:root {
+    font-size: 40px; /* why so big number? because it breaks if browser have min font size setting (especially in safari) */
+
+    --padding-micro: .075rem;
+    --padding-mini: .1rem;
+    --padding-small: .2rem; /*8px*/
+    --padding-medium: .4rem; /*16px*/
+    --padding-large: .6rem; /*24px*/
+    --border-radius: .1rem; /*4px*/
+
+    /* fonts */
+    --head-font-size: .4rem; /*16px*/
+    --title-font-size: .375rem; /*15px*/
+    --primary-font-size: .35rem; /*14px*/
+    --secondary-font-size: .325rem; /*13px*/
+    --tertiary-font-size: .3rem; /*12px*/
+
+    /* line-height */
+    --primary-line-height: 1.3;
+
+    /* size */
+    --icon-size: .5rem; /*20px*/
+    --shadow-height: 1px;
+    --button-height: .7rem; /*28px*/
+    --list-item-height: .8rem; /*32px*/
+    --header-height: 1.2rem; /*48px*/
+}
+
+[data-app-size='large'] {
+    font-size: 45px;
+}
+
+/* Mobile */
+@media (pointer: coarse) {
+    [data-app-size='default'] {
+        font-size: 45px;
+    }
+
+    [data-app-size='large'] {
+        font-size: 50px;
+    }
+}
+
+@media 
+(-webkit-min-device-pixel-ratio: 2), 
+(min-resolution: 192dpi) {
+    :root, [data-app-size] {
+        --shadow-height: .5px;
+    }
+}

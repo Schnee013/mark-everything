@@ -1,0 +1,54 @@
+.section {
+	min-height: var(--list-item-height)
+	padding: 0 var(--padding-medium)
+    //padding-top: var(--padding-mini)
+	font-size: var(--secondary-font-size)
+	color: var(--secondary-text-color)
+	display: flex
+	align-items: center
+
+	&[disabled] {
+        color: var(--disable-text-color)
+        pointer-events: none
+    }
+	
+	&.active {
+        background: var(--accent-color)
+        color: white
+    }
+    
+    &.isDragging {
+        background: var(--background-color)
+    	box-shadow: 0 1px 3px rgba(0,0,0,.1)
+    }
+    
+    &.isDropping {
+    	transition: box-shadow .15s ease-in-out, background .15s ease-in-out;
+    	background-color: unquote('hsla(var(--accent-hsl), .1)') !important;
+    	box-shadow: inset 0px 0px 0px 2px var(--accent-color);
+    }
+	
+    @media (pointer: fine) {
+        &:hover {
+            .actions {
+                display:block
+            }
+        }
+    }
+}
+
+.title {
+    flex: 1
+    min-width: 0
+    padding-right: var(--padding-small)
+
+    white-space: nowrap
+    overflow: hidden
+    overflow: clip
+    text-overflow: ellipsis
+    word-wrap: break-word
+}
+
+.actions {
+    display: none
+}

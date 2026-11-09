@@ -1,0 +1,26 @@
+.slider {
+	display: flex;
+	align-items: center;
+	color: var(--secondary-text-color);
+	padding: 12px;
+
+	a {
+		color: currentColor;
+
+		&:first-child {
+			margin-right: 10px;
+		}
+		
+		&:last-child {
+			margin-left: 10px;
+		}
+
+		&:active {
+			color: var(--primary-text-color);
+		}
+	}
+
+	input {
+		flex:1;
+	}
+}

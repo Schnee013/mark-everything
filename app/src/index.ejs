@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta name="color-scheme" content="dark light" />
+	<meta name="darkreader-lock" />
+
+	<title><%= process.env.ME_LOCAL ? 'ME' : 'Raindrop.io' %></title>
+
+	<% if (process.env.ME_LOCAL) { %>
+        <link rel='icon' type='image/png' href='<%= require("./me/brand/icon_32.png").default %>' media='(prefers-color-scheme: light)' />
+        <link rel='icon' type='image/png' href='<%= require("./me/brand/icon_32_dark.png").default %>' media='(prefers-color-scheme: dark)' />
+    <% } %>
+	<%if (process.env.APP_TARGET != 'extension') { %>
+		<meta name="google" value="notranslate" />
+		<meta name="description" content="All-in-one bookmark manager">
+
+		<!-- security -->
+		<meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' <%= process.env.NODE_ENV === 'development' ? '\'unsafe-inline\' \'unsafe-eval\'' : '' %>; style-src 'self' 'unsafe-inline'; img-src * blob: data:; object-src 'self';">
+
+		<!-- icons -->
+		<link rel='icon' href='<%= require("./assets/brand/favicon.ico").default %>' />
+		<link rel='apple-touch-icon' href='<%= require("./assets/brand/icon_180.png").default %>' />
+		<link rel='icon' type='image/svg+xml' href='<%= require("./assets/brand/icon_raw.svg?asis").default %>' />
+
+	<% } %>
+
+	<meta name="referrer" content="origin">
+
+</head>
+<body>
+	<noscript>
+		<br><br><center>Javascript must be enabled in order for you to use ME. However, it seems Javascript is either disabled or not supported by your browser.</center>
+	</noscript>
+
+	<div id="react"></div>
+
+</body>
+</html>

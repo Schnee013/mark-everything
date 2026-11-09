@@ -1,0 +1,71 @@
+.icon {
+    display: flex
+    align-items: center
+    justify-content: center
+    position: relative
+    color: var(--filter-color)
+}
+
+.item {
+    &[data-token='❤️'] .icon,
+    &[data-token='important'] .icon {
+        color: var(--important-color)
+    }
+
+    &[data-token='#'] .icon {
+        color: var(--tag-color)
+    }
+
+    &[data-token='note'] .icon {
+        color: var(--note-color)
+    }
+
+    &[data-token='highlights'] .icon {
+        color: var(--highlights-color)
+    }
+
+    &[data-token='reminder'] .icon {
+        color: var(--reminder-color)
+    }
+
+    &[data-token='type'][data-id='article'] .icon {
+        color: var(--article-color)
+    }
+    &[data-token='type'][data-id='audio'] .icon {
+        color: var(--audio-color)
+    }
+    &[data-token='type'][data-id='document'] .icon {
+        color: var(--document-color)
+    }
+    &[data-token='type'][data-id='book'] .icon {
+        color: var(--book-color)
+    }
+    &[data-token='type'][data-id='image'] .icon {
+        color: var(--image-color)
+    }
+    &[data-token='type'][data-id='video'] .icon {
+        color: var(--video-color)
+    }
+
+    &[data-token='broken'] .icon {
+        color: var(--broken-color)
+    }
+    &[data-token='duplicate'] .icon {
+        color: var(--duplicate-color)
+    }
+    &[data-token='notag'] .icon {
+        color: var(--tag-color)
+    }
+    &[data-token='title'] .icon {
+        color: var(--tag-color)
+    }
+    &[data-token='excerpt'] .icon {
+        color: var(--tag-color)
+    }
+    &[data-token='link'] .icon {
+        color: var(--tag-color)
+    }
+    &[data-token='info'] .icon {
+        color: var(--tag-color)
+    }
+}

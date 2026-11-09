@@ -1,0 +1,105 @@
+@import './size.module.css';
+@import './themes.module.css';
+
+/* Page itself */
+.page {
+    width: 100%;
+    min-height: 100%;
+}
+
+/* electron */
+html:before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: env(titlebar-area-height);
+    app-region: drag;
+    -webkit-app-region: drag;
+    z-index: 999999999999999;
+}
+
+/* extension */
+@media (max-width: 800px) {
+    html:global(.extension:not(.sidepanel):not(.mobile)) .page {
+        width: 420px;
+        height: fit-content;
+        min-height: 300px;
+    }
+}
+
+/* Background */
+body {
+    background: var(--background-color);
+}
+
+/* Do not set background color for page! otherwise glitch in firefox */
+
+/* Global */
+* {
+    box-sizing: border-box;
+}
+
+body, input, textarea, select, button {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+    font-size: var(--primary-font-size);
+    line-height: 1.4;
+}
+
+input, textarea, select, button {
+    color: inherit;
+    background: inherit;    
+}
+
+::placeholder {
+    color: var(--disable-text-color);
+    opacity: 1;
+}
+
+:focus, :focus-visible {
+    outline: 1px auto var(--accent-color);
+    outline-offset: -1px;
+}
+
+@supports selector(:focus-visible) {
+    :not(input, textarea):focus {
+        outline: none;
+    }
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+/* Scrollbars */
+html {
+    scrollbar-color: var(--scrollbar-color) transparent;
+}
+
+html:global(.scrollbar-obtrusive) ::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+    background: var(--background-color);
+}
+    
+html:global(.scrollbar-obtrusive) ::-webkit-scrollbar * {
+    background: transparent;
+}
+
+html:global(.scrollbar-obtrusive) ::-webkit-scrollbar-thumb {
+    border: 3px solid transparent;
+    border-radius: 14px;
+    box-shadow: inset 0px 0px 0px 7px var(--scrollbar-color);
+}
+
+html:global(.scrollbar-obtrusive) ::-webkit-scrollbar-thumb:hover {
+    box-shadow: inset 0px 0px 0px 7px var(--disable-text-color);
+}
+
+html:global(.scrollbar-obtrusive) ::-webkit-scrollbar-button{
+    width: 0;
+    height: 0;
+    display: none;
+}

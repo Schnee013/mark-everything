@@ -1,0 +1,98 @@
+.icon {
+	contain: strict
+	display: inline-block
+
+	svg {
+		contain: strict
+		display:block
+		fill: currentColor
+	}
+}
+
+.icon svg, .icon {
+	width: var(--icon-size);
+	height: var(--icon-size);
+}
+
+.icon[data-enlarge='1'] svg, .icon[data-enlarge='1'] {
+	width: var(--icon-size);
+	height: var(--icon-size);
+}
+
+.icon[data-enlarge='1.5'] svg, .icon[data-enlarge='1.5'] {
+	width: calc(var(--icon-size) * 1.5);
+	height: calc(var(--icon-size) * 1.5);
+}
+
+.icon[data-enlarge='2'] svg, .icon[data-enlarge='2'] {
+	width: calc(var(--icon-size) * 2);
+	height: calc(var(--icon-size) * 2);
+}
+
+.icon[data-enlarge='3'] svg, .icon[data-enlarge='3'] {
+	width: calc(var(--icon-size) * 3);
+	height: calc(var(--icon-size) * 3);
+}
+
+.icon[data-enlarge='4'] svg, .icon[data-enlarge='4'] {
+	width: calc(var(--icon-size) * 4);
+	height: calc(var(--icon-size) * 4);
+}
+
+.icon[data-size="micro"] svg, .icon[data-size="micro"] {
+	width: 0.25rem //10px
+	height: 0.25rem //10px
+}
+
+.avatar {
+	border-radius: 50%
+	overflow: hidden
+	position: relative
+
+	img {
+        width: 100%
+        height: 100%
+        display: block
+
+		&:after {
+			content: ""
+			display: block
+			position: absolute
+			top: 0
+			left: 0
+			width: 100%
+			height: 100%
+			background: var(--active-background-color)
+		}
+
+		&:-moz-broken, &:-moz-loading, &:-moz-suppressed {
+			background: var(--active-background-color)
+		}
+    }
+
+	&:before {
+        content: ''
+        position: absolute
+        left: 0
+        right: 0
+        bottom: 0
+        top: 0
+        box-shadow: inset 0 0 0 var(--shadow-height) var(--shadow-color)
+        border-radius: 50%
+    }
+}
+
+.avatarDefault {
+	opacity: .7
+}
+
+.number {
+	background: currentColor
+	line-height: var(--icon-size)
+	border-radius: var(--icon-size)
+	text-align: center
+
+	.text {
+		color: Window
+	}
+}

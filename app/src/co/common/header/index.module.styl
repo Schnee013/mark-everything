@@ -1,0 +1,92 @@
+.header {
+    display: flex
+    flex-direction: row
+    align-items: center
+    min-height: var(--header-height)
+    padding: var(--padding-small) var(--padding-medium)
+    box-shadow: 0 var(--shadow-height) 0 var(--shadow-color)
+    z-index: 10
+    flex-shrink: 0
+    white-space: nowrap
+
+    position: sticky
+    top: 0
+
+    > *:not(:last-child):not(.space) {
+        margin-right: var(--padding-mini)
+    }
+
+    &[data-no-shadow='true'] {
+        box-shadow: none
+    }
+
+    &[data-fancy='true'], &[data-solid='true'] {
+        background: var(--background-color)
+    }
+
+    &[data-static='true'] {
+        position: static
+        z-index: auto
+    }
+}
+
+.header[data-window-inset='true'] {
+    padding-top: env(titlebar-area-height, var(--padding-small))
+}
+
+//fix for firefox popover
+html:global(.extension.action.firefox) .header {
+    position: static
+}
+
+//very heavy for performance!
+@supports (backdrop-filter: blur(20px)) {
+	.header[data-fancy='true'] {
+		background: unquote('linear-gradient(to bottom, var(--background-color) 30%, hsla(var(--background-hsl), .6) 100%)')
+		backdrop-filter: blur(20px)
+	}
+}
+
+.title {
+    min-width: 0
+    font-size: var(--head-font-size)
+    font-weight: 600
+
+    white-space: nowrap
+    overflow: hidden
+    overflow: clip
+    text-overflow: ellipsis
+    word-wrap: break-word
+
+    a {
+        color: currentColor
+        border-bottom: 1px dotted var(--secondary-text-color)
+
+        @media (pointer: fine) {
+            &:hover {
+                border-bottom-style: solid
+                border-bottom-color: currentColor
+            }
+        }
+    }
+}
+
+.space {
+    flex: 1
+    flex-shrink: 1
+}
+
+.firstAction {
+    margin-left: calc(var(--padding-small) * -1)
+    flex-shrink: 0
+}
+
+.lastAction {
+    margin-right: calc(var(--padding-small) * -1)
+    flex-shrink: 0
+}
+
+.spaceActionIcon {
+    width: var(--icon-size)
+    height: var(--icon-size) 
+}

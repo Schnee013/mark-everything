@@ -1,0 +1,115 @@
+import React from 'react'
+import t from '~t'
+import _ from 'lodash'
+import { connect } from 'react-redux'
+import * as actions from '~data/actions/bookmarks'
+
+import Popover, { Menu, MenuItem, MenuSeparator } from '~co/overlay/popover'
+import { Confirm } from '~co/overlay/dialog'
+import Button from '~co/common/button'
+import Icon from '~co/common/icon'
+
+class BookmarksSelectModeMore extends React.Component {
+    static defaultProps = {
+        selectMode: {}
+    }
+
+    pin = React.createRef()
+
+    state = {
+        menu: false
+    }
+
+    onContextMenuClick = ()=>
+        this.setState({menu: true})
+
+    onContextMenuClose = ()=>
+        this.setState({menu: false})
+
+    onImportantClick = (e)=>{
+        e.preventDefault()
+        this.props.importantSelected(this.props.spaceId, true)
+    }
+
+    onImportantRemoveClick = (e)=>{
+        e.preventDefault()
+        this.props.importantSelected(this.props.spaceId, false)
+    }
+
+    onRemoveTagsClick = (e)=>{
+        e.preventDefault()
+
+        const title = t.s('removeAllTags')
+
+        Confirm(
+            title,
+            {
+                description: t.s('areYouSure'),
+                ok: title,
+                variant: 'warning'
+            }
+        ).then(yes=>{
+            if (yes)
+                this.props.removeTagsSelected(this.props.spaceId)
+        })
+    }
+
+    onReparseClick = (e)=>{
+        e.preventDefault()
+        this.props.reparseSelected(this.props.spaceId)
+    }
+
+    render() {
+        const { selectMode: { all, ids } } = this.props
+
+        return (
+            <>
+                <Button
+                    ref={this.pin}
+                    title={process.env.ME_LOCAL ? '更多批量操作' : undefined}
+                    variant='outline'
+                    disabled={!all && !ids.length}
+                    onClick={this.onContextMenuClick}>
+                    <Icon name='more_horizontal' />
+                </Button>
+
+                {this.state.menu ? (
+                    <Popover pin={this.pin} onClose={this.onContextMenuClose}>
+                        <Menu>
+                            {process.env.ME_LOCAL && <MenuItem onClick={() => require('../../../../me/organize').removeSelectedTag(this.props.selectMode._items)}>移除指定标签…</MenuItem>}
+                            {process.env.ME_LOCAL && this.props.selectMode.spaceId === '-99' && <MenuItem onClick={() => require('../../../../me/organize').restoreSelected(this.props.selectMode._items)}>恢复原位置</MenuItem>}
+                            <MenuItem onClick={this.onReparseClick}>
+                                <Icon name='refresh' />
+                                {t.s('refreshPreview')}
+                            </MenuItem>
+
+                            <MenuSeparator />
+
+                            <MenuItem onClick={this.onImportantClick}>
+                                <Icon name='like_active' />
+                                {t.s('addToFavorites')}
+                            </MenuItem>
+
+                            <MenuItem onClick={this.onImportantRemoveClick}>
+                                <Icon name='like' />
+                                {t.s('removeFromFavorites')}
+                            </MenuItem>
+
+                            <MenuSeparator />
+
+                            <MenuItem onClick={this.onRemoveTagsClick}>
+                                <Icon name='tag' />
+                                {t.s('removeTags')}
+                            </MenuItem>
+                        </Menu>
+                    </Popover>
+                ) : null}
+            </>
+        )
+    }
+}
+
+export default connect(
+	undefined,
+	actions
+)(BookmarksSelectModeMore)

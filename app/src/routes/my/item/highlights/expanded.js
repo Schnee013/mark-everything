@@ -1,0 +1,44 @@
+import s from './expanded.module.styl'
+import t from '~t'
+import React, { useCallback } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { highlights as getHighlights } from '~data/selectors/bookmarks'
+import { toggleHighlights } from '~local/actions'
+
+import Header, { Title, Space } from '~co/common/header'
+import Button from '~co/common/button'
+import Icon from '~co/common/icon'
+import Highlights from '~co/highlights/items'
+import CopyButton from '~co/highlights/copy-button'
+
+export default function ReaderHighlightsExpanded({ item: { _id }, webViewRef }) {
+    const dispatch = useDispatch()
+    const highlights = useSelector(state=>getHighlights(state, _id))
+    const onCollapseClick = useCallback(()=>dispatch(toggleHighlights()), [])
+
+    return (
+        <div className={s.wrap}>
+            <Header
+                data-fancy
+                data-no-shadow>
+                <Title>{t.format('highlightsCount', highlights.length)}</Title>
+
+                <Space />
+
+                <CopyButton _id={_id}>
+                    <Icon name='duplicates' />
+                </CopyButton>
+
+                <Button onClick={onCollapseClick}>
+                    <Icon name='close' />
+                </Button>
+            </Header>
+
+            <div className={s.items}>
+                <Highlights
+                    _id={_id}
+                    webViewRef={webViewRef} />
+            </div>
+        </div>
+    )
+}

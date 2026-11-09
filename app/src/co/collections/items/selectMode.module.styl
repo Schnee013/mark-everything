@@ -1,0 +1,40 @@
+.wrap {
+    position: absolute
+	z-index: 3
+	top: 1px
+	left: 7px
+	right: 7px
+    box-shadow: 0 0 0 var(--shadow-height) var(--shadow-color), 0 3px 15px rgba(0,0,0,.1)
+	border-radius: var(--border-radius)
+    overflow: hidden
+    overflow: clip
+}
+
+.mode {
+	background: var(--background-color)
+}
+
+.header {
+    display: flex
+    align-items: center
+    padding: var(--padding-small) var(--padding-medium)
+
+    .title {
+        flex: 1
+        font-weight: 600
+        font-size: var(--primary-font-size)
+
+        white-space: nowrap
+        overflow: hidden
+        overflow: clip
+        text-overflow: ellipsis
+        word-wrap: break-word
+    }
+}
+
+.actions {
+    margin-top: -10px
+    display: flex
+    align-items: center
+    padding: var(--padding-small) var(--padding-mini)
+}

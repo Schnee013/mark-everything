@@ -1,0 +1,2 @@
+export const 
+	CONFIG_ACKNOWLEDGE			= 'CONFIG_ACKNOWLEDGE'

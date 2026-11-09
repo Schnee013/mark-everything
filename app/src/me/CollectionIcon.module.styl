@@ -1,0 +1,4 @@
+// Keep the monochrome SVGs visible at night without recoloring Twemoji artwork.
+:global([data-theme='night']) .icon:not([src*='/twemoji-']) {
+    filter: invert(1)
+}

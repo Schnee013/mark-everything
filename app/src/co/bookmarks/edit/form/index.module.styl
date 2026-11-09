@@ -1,0 +1,18 @@
+.edit {
+	width: 100%
+	max-width: 13rem //520px
+	margin: 0 auto
+	padding: var(--padding-small) 0
+	display: flex
+}
+
+.form {
+	flex: 1
+	position: relative
+
+	&[data-status='loading'],
+	&[data-status='idle'] {
+		pointer-events: none
+		user-select: none
+	}
+}

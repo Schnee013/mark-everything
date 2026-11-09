@@ -1,0 +1,115 @@
+:global(.hide-cover) .wrap {
+    display: none
+}
+
+.wrap {
+    position: relative
+}
+
+.preloader {
+    position: absolute
+    z-index: 1
+    top: var(--padding-mini)
+    left: var(--padding-mini)
+    background: var(--background-color)
+    padding: var(--padding-mini)
+    border-radius: var(--border-radius)
+    display: flex
+    animation: fadeIn .2s ease-in-out
+}
+@keyframes fadeIn {
+    0% {opacity: 0}
+    50% {opacity: 0}
+    100% {opacity: 1}
+}
+
+.image {
+    position: relative
+    display: block
+    border-radius: 2px
+    contain: content
+
+    &:after {
+        content: ""
+        display: block
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        background: var(--sidebar-background-color)
+    }
+
+    &:-moz-broken, &:-moz-loading, &:-moz-suppressed {
+        background: var(--sidebar-background-color)
+    }
+}
+
+//Lists specific
+.list, .simple {
+    &.wrap {
+        flex-shrink: 0
+        align-self: flex-start
+    }
+}
+
+:global(.list-cover-right) .list.wrap {
+    order: 1
+}
+
+.simple {
+    .image {
+		width: var(--icon-size)
+		height: var(--icon-size)
+	}
+}
+
+//Grids specific
+.grid, .masonry {
+    &.wrap {
+        overflow: hidden;
+        overflow: clip;
+        padding-top: 56.25%; //16x9 aspect-ratio
+
+        &:before {
+            content: ''
+            position: absolute
+            bottom: 0
+            right: 0
+            left: 0
+            height: 1px
+            z-index: 1
+            box-shadow: inset 0 calc(var(--shadow-height) * -1) 0 var(--shadow-light-color)
+        }
+    }
+
+    .image {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        top: 0; right:0; bottom: 0; left: 0;
+        object-fit: initial;
+
+        border-top-left-radius: var(--border-radius)
+        border-top-right-radius: var(--border-radius)
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+}
+
+.grid {
+    .image {
+        object-fit: cover
+        height: 100%
+    }
+}
+
+.masonry {
+    &.wrap {
+        padding: 0
+    }
+
+    .image {
+        position: static
+    }
+}

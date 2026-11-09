@@ -1,0 +1,44 @@
+.wrap {
+    --lazy-item-height: 200px;
+}
+
+.template {
+    margin-top: var(--padding-medium)
+}
+
+.section {
+    padding: 0 var(--padding-medium)
+    font-size: var(--primary-font-size)
+    opacity: .5
+}
+
+.icons {
+    display: grid
+    grid-template-columns: unquote('repeat(auto-fill, minmax(min(calc(50% - var(--padding-medium) * 2), calc(var(--icon-size) * 2)), 1fr))')
+    grid-column-gap: var(--padding-mini)
+    grid-row-gap: var(--padding-mini)
+    padding: var(--padding-small) var(--padding-medium)
+
+    .icon {
+        text-align: center
+        padding: var(--padding-small)
+        border-radius: var(--border-radius)
+        transition: opacity .1s ease-in-out, background .1s ease-in-out;
+
+        img {
+            display: block
+            margin: auto
+            pointer-events: none
+            object-fit: contain
+            width: var(--button-height)
+            height: var(--button-height)
+        }
+
+        @media (pointer: fine) {
+            &:hover {
+                opacity: .9
+                background: var(--hover-background-color)
+            }
+        }
+    }
+}

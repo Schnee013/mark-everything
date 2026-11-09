@@ -1,0 +1,12 @@
+.item[data-menu-item] {
+    cursor: pointer
+    height: var(--button-height)
+
+    @media (pointer: fine) {
+        &:focus, &:hover {
+            background: var(--accent-color)
+            color: var(--background-color) !important
+            --secondary-text-color: var(--background-color)
+        }
+    }
+}

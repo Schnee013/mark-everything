@@ -1,0 +1,36 @@
+.button {
+    position: relative
+
+    &[data-selectable='false'] {
+        pointer-events: none
+    }
+}
+
+.icon, .select {
+    transition: .2s ease-in-out
+    transition-delay: .2s
+}
+
+.select {
+    opacity: 0
+    position: absolute
+    left: 0
+    right: 0
+    bottom: 0
+    top: 0
+    pointer-events: none
+    display: flex
+    align-items: center
+    justify-content: center
+}
+
+[data-is-header]:hover .button[data-selectable='true'],
+.button[data-selectable='true']:focus-visible {
+    .select {
+        opacity: 1
+    }
+
+    .icon {
+        opacity: 0
+    }
+}

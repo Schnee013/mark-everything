@@ -1,0 +1,22 @@
+.empty {
+    flex: 1
+    display: flex
+    align-items: center
+    justify-content: center
+    text-align: center
+    padding: var(--padding-large)
+
+    &:empty {
+        //otherwise virtualized list glitches:
+        padding: 0
+        min-height: 1px
+    }
+
+    svg path {
+        fill: var(--accent-color)
+    }
+
+    svg :not([fill]) {
+        fill: currentColor
+    }
+}

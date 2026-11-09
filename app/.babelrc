@@ -1,0 +1,36 @@
+{
+    "sourceType": "unambiguous",
+    "presets": [
+        "@babel/preset-react",
+        [
+            "@babel/env",
+            {
+                "targets": {
+                    "browsers": [
+                        "Chrome >= 67",
+                        "Safari >= 11",
+                        "Firefox >= 55",
+                        "Edge >= 80"
+                    ]
+                },
+                "modules": false,
+                "bugfixes": true,
+                "useBuiltIns": "usage",
+                "corejs": 3,
+                "exclude": ["transform-typeof-symbol"]
+            }
+        ]
+    ],
+    "plugins": [
+        ["@babel/plugin-proposal-class-properties",{"useBuiltIns": "usage"}],
+        "@babel/plugin-syntax-dynamic-import"
+    ],
+    "env": {
+		"production": {
+			"plugins": [
+                "lodash",
+                "@babel/transform-react-constant-elements"
+			]
+		}
+	}
+}

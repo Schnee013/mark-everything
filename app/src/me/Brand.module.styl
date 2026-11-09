@@ -1,0 +1,15 @@
+.mark {
+    width: var(--icon-size, 24px)
+    height: var(--icon-size, 24px)
+    object-fit: contain
+}
+
+// Import both resources in JS so their paths resolve from the extension root.
+.dark {
+    display: none
+}
+
+:global([data-theme='night']) {
+    .light { display: none }
+    .dark { display: initial }
+}

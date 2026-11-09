@@ -1,0 +1,120 @@
+.item {
+    user-select: none
+    color: inherit
+    display: flex
+    align-items: center
+	position: relative
+	height: var(--list-item-height)
+    padding: 0 var(--padding-medium)
+    font-size: var(--primary-font-size)
+    line-height: 2
+    white-space: nowrap
+    cursor: default
+
+    &[disabled] {
+        color: var(--disable-text-color)
+        pointer-events: none
+    }
+
+    @media (pointer: fine) {
+        &:not(:hover) .actions {
+            display: none
+        }
+
+        &:hover {
+            background: var(--hover-background-color)
+
+            .actions {
+                display: flex;
+            }
+        }
+    }
+
+    &.active, &:focus-within {
+        background: var(--active-background-color)
+    }
+
+    >:not(:last-child), >:first-child {
+        margin-right: var(--padding-small)
+    }
+}
+
+a.item {
+    cursor: pointer
+}
+
+[data-theme="day"] .item.focusable.active:focus-within {
+    outline: none
+    background: var(--accent-color)
+    color: unquote('hsl(var(--background-hsl))')
+    --alternative-background-color: rgba(0,0,0,.1)
+    --active-background-color: rgba(0,0,0,.2)
+    --primary-text-color: unquote('hsla(var(--background-hsl), .8)')
+    --secondary-text-color: unquote('hsla(var(--background-hsl), .5)')
+    --disable-text-color: unquote('hsla(var(--background-hsl), .5)')
+    --shadow-color: transparent
+
+    .icon {
+        color: currentColor
+    }
+}
+
+.icon {
+    width: var(--icon-size)
+    height: var(--icon-size)
+    color: var(--primary-text-color)
+
+    > * {
+        display: block
+        width: 100%
+        height: 100%
+        object-fit: cover
+
+        svg {
+            width: 100%
+            height: 100%
+        }
+    }
+}
+
+.title {
+    min-width:0
+    flex: 1
+    padding: 1px 0
+
+    white-space: nowrap
+    overflow: hidden
+    overflow: clip
+    text-overflow: ellipsis
+    word-wrap: break-word
+
+    em {
+        font-weight: 600
+        font-style: normal
+    }
+}
+
+.info {
+    color: var(--secondary-text-color)
+    font-size: var(--tertiary-font-size)
+    text-align: right
+    display: flex
+    flex-direction: column
+}
+
+.item .actions {
+    display: flex;
+    text-align: right
+    justify-content: flex-end
+    position: relative
+    z-index: 1
+    margin-right: 0
+}
+
+.item .link {
+    position: absolute
+    left: 0;right: 0;bottom: 0; top: 0;
+    z-index: 1
+    color: transparent
+    cursor: pointer
+}
